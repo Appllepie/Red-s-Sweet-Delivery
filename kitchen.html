@@ -1,0 +1,234 @@
+<html>
+    <head>
+        <title>
+            Red's Sweet Delivery
+        </title>
+        <link rel = "shortcut icon" href = "LLR_very_sad(icon).png" type = "image/*">
+        <link rel="stylesheet" href = "style.css">
+        <style>
+
+            .kitchen {
+                display: flex;
+                justify-content: space-between;
+                padding: 20px;
+                gap: 40px;
+            }
+
+            .left-side {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .cabinets {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .left-cabinet, .middle-cabinet, .right-cabinet {
+                background-color: #d2b48c;
+                border: 2px solid #8b5a2b;
+                width: 320px;
+                height: 200px;
+                display: flex;
+                flex-direction: row;
+                justify-content: first baseline;
+                align-items:last baseline;
+
+            }
+
+            .countertop {
+                background-color: #deb887;
+                width: 380px;
+                height: 130px;
+                border: 2px solid #8b5a2b;
+            }
+
+            .oven {
+                width: 380px;
+                height: 220px;
+                background-color: #4b4b4b;
+
+            }
+
+            .fridge {
+                width: 290px;
+                height: 580px;
+                background-color: #e0f7fa;
+                border: 2px solid #00796b;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+
+            }
+
+            .shelf-1, .shelf-2, .shelf-3 {
+                width: 100%;
+                height: 100px;
+                border-top: 1px solid #00796b;
+
+
+
+            }
+
+            .item {
+                width: 150px;
+                height: 150px;
+                background-color: transparent;
+                border: none;
+            }
+
+            .item-img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            .inventory {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+                background-color: #f2f2f2;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                border-top: 2px solid #ccc;
+                z-index: 1000;
+            }
+
+            .square {
+                width: 60px;
+                height: 60px;
+                background-color: #c96363;
+                border: 2px solid #333;
+            }
+
+            .rectangle {
+                width: 120px;
+                height: 120px;
+                background-color: #765959;
+                border: 2px solid #000;
+                object-fit: contain;
+            }
+
+
+
+            
+        </style>
+    </head>
+
+    <body onload="start();">
+        <button type = "button" id = "continue" hidden = "true" onclick = "continueButton();">CONTINUE</button>
+        <!-- Kitchen Layout -->
+        <div class="kitchen" id="kitchen">
+            
+    
+            <!-- Left Side: Cabinets and Oven -->
+            <div class="left-side">
+                <div class="cabinets">
+                    <div class="left-cabinet">
+                        <h3 class="item" id="baking-soda" onclick="collectItems(this.id);">
+                            <img src="baking-soda.PNG" alt="Baking Soda" class="item-img">
+                        </h3>
+                        <h3 class="item" id="vanilla-extract" onclick="collectItems(this.id);">
+                            <img src="vanilla-extract.PNG" alt="Vanilla" class="item-img">
+                        </h3>
+                    </div>
+    
+                    <div class="middle-cabinet">
+                        <!-- You can add more items here later -->
+                    </div>
+    
+                    <div class="right-cabinet">
+                        <h3 class="item" id="flour" onclick="collectItems(this.id);">
+                            <img src="flour.PNG" alt="Flour" class="item-img">
+                        </h3>
+                        <h3 class="item" id="white-sugar" onclick="collectItems(this.id);">
+                            <img src="white-sugar.PNG" alt="White Sugar" class="item-img">
+                        </h3>
+                        <h3 class="item" id="brown-sugar" onclick="collectItems(this.id);">
+                            <img src="brown-sugar.PNG" alt="Brown Sugar" class="item-img">
+                        </h3>
+                    </div>
+                </div>
+    
+                <div class="countertop">
+                    <h3 class="item" id="raisins" onclick="collectItems(this.id);">
+                        <img src="raisins.PNG" alt="Raisins" class="item-img">
+                    </h3>
+                </div>
+    
+                <div class="oven"></div>
+            </div>
+    
+            <!-- Right Side: Fridge -->
+            <div class="fridge">
+                <div class="shelf-1">
+                    <h3 class="item" id="milk" onclick="collectItems(this.id);">
+                        <img src="milk.PNG" alt="Milk" class="item-img">
+                        <img src="butter.PNG" alt="Butter" class="item-img">
+                    </h3>
+                </div>
+                <div class="shelf-2">
+                    <h3 class="item" id="eggs" onclick="collectItems(this.id);">
+                        <img src="eggs.PNG" alt="Eggs" class="item-img">
+                       
+                    </h3>
+                </div>
+                <div class="shelf-3">
+
+                </div>
+            </div>
+        </div>
+    
+        <!-- Inventory Bar -->
+        <div class="inventory">
+            <img class="rectangle" id = "character-icon" src="LLR_neutral(icon).png">
+            <img id="slot-1" class="square" src="empty.png">
+            <img id="slot-2" class="square" src="empty.png">
+            <img id="slot-3" class="square" src="empty.png">
+            <img id="slot-4" class="square" src="empty.png">
+            <img id="slot-5" class="square" src="empty.png">
+            <img id="slot-6" class="square" src="empty.png">
+            <img id="slot-7" class="square" src="empty.png">
+            <img id="slot-8" class="square" src="empty.png">
+            <img id="slot-9" class="square" src="empty.png">
+            
+        </div>
+      
+      <div class = "mix-dry-ingredients" id = "mix-dry-ingredients">
+            <h3 id = "main-bowl"></h3>
+            <h3 id = "flour-bowl"></h3>
+            <h3 id = "baking-soda-bowl"></h3>
+            <h3 id = "raison-bowl"></h3>
+            <h3 id = "white-sugar-bowl"></h3>
+            <h3 id = "brown-sugar-bowl"></h3>
+        </div>
+
+        <div class = "mix-wet-ingredients" id = "mix-wet-ingredients" >
+            <h3 id = "wet-bowl"></h3>
+        </div>
+
+        <div class = "placing-cookie-dough" id ="placing-cookie-dough"  >
+            <img id = "tray" onclick = "placeDough();"/>
+            <img id = "bowl" onclick = "grabDough();"/>
+        </div>
+
+        <div class = "baking-cookies" id = "baking-cookies">
+            <h2 id = "oven-timer"></h2>
+            <button type = "button" onclick = "startTimer();" hidden = "false">TURN ON</button>
+            <button type = "button" onclick = "endTimer();" hidden = "true">TURN OFF</button>
+            <h3 id = "oven-door"></h3>
+            <img id = "cookies"/>
+        </div>
+
+        <!-- Notification -->
+        <div id="notification-bar" style="display: none;"></div>
+    
+        <script src="kitchen.js" defer></script>
+
+    </body>
+</html>
